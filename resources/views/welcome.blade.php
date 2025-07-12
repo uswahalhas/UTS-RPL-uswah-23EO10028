@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             background: #f8f9fa;
         }
 
-        /* Header */
         .navbar-custom {
             background-color: #1e1e1e;
             padding: 5px 20px;
@@ -31,25 +29,32 @@
             font-weight: 500;
         }
 
-        .logo-header {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            z-index: 100;
-        }
-
-        .logo-header img {
-            height: 300px;
-        }
-
         /* Hero Section */
         .hero {
-            background: #ffffff;
+            background: url('{{ asset('images/Stadion-Sepak-Bola-Terbesar-di-Dunia.jpg') }}') no-repeat center center;
+            background-size: cover;
             height: 100vh;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 0;
+        }
+
+        .hero > *:not(.overlay) {
+            z-index: 1;
+            position: relative;
         }
 
         .hero-text {
@@ -68,7 +73,6 @@
             color: #666;
         }
 
-        /* Welcome Box */
         .welcome-box {
             background: linear-gradient(145deg, #c9a341, #b88e2f);
             border-radius: 12px;
@@ -110,7 +114,6 @@
             background-color: #b88e2f;
         }
 
-        /* Lapangan Section */
         .lapangan-card img {
             width: 100%;
             height: 150px;
@@ -156,7 +159,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <!-- Header -->
@@ -177,14 +179,14 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <!-- Teks Hero di Kiri -->
+        <div class="overlay"></div> <!-- overlay background -->
+
         <div class="hero-text">
             <h1>Selamat Datang </h1>
             <p>Pilih Olahraga Favoritmu & Pesan Lapangannya Sekarang!</p>
             <p><strong>Gabung Sekarang dan Nikmati Kemudahannya</strong></p>
         </div>
 
-        <!-- Box Buat Akun di Kanan -->
         <div class="welcome-box">
             <h1>Uswah Bookia</h1>
             <p>Sistem Pemesanan Fasilitas Olahraga</p>
@@ -196,7 +198,7 @@
         </div>
     </div>
 
-    <!-- Bagian Lapangan -->
+    <!-- Lapangan Section -->
     <div class="container lapangan-section">
         <h3 class="text-center mb-4">Pilihan Lapangan yang Tersedia</h3>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
@@ -267,7 +269,7 @@
         </div>
     </footer>
 
-    <!-- Tombol WhatsApp -->
+    <!-- WhatsApp Button -->
     <div class="whatsapp-button">
         <a href="https://wa.me/62882003281817" target="_blank">
             <img src="{{ asset('images/whatsapp-icon.png') }}" alt="WhatsApp">
@@ -275,5 +277,4 @@
     </div>
 
 </body>
-
 </html>
