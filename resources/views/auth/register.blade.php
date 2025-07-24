@@ -42,6 +42,19 @@
 </head>
 <body class="bg-light">
 
+<!-- Navigasi atas -->
+<nav class="d-flex justify-content-between align-items-center px-4 py-3 bg-white shadow-sm">
+  <a href="{{ url('/') }}" class="btn btn-outline-secondary">← Halaman Utama</a>
+  <div>
+    @if (Route::currentRouteName() !== 'login')
+      <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Login</a>
+    @endif
+    @if (Route::currentRouteName() !== 'register')
+      <a href="{{ route('register') }}" class="btn btn-outline-primary">Register</a>
+    @endif
+  </div>
+</nav>
+
 <div class="container py-5">
   <div class="auth-container d-flex mx-auto bg-white">
     

@@ -8,6 +8,53 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+      background-color: #c79c3c;
+      color: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    /* Existing Styles */
+    .main-content {
       padding: 40px;
     }
 
@@ -38,7 +85,7 @@
     }
 
     .btn:hover {
-      background-color: #218838;
+      background-color: #b38a35;
     }
 
     table {
@@ -94,54 +141,69 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Booking</h1>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="header-container">
+      <a href="#" class="logo">Uswah Bookia</a>
+      <nav class="nav">
+        <a href="beranda.html">Beranda</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </nav>
+    </div>
+  </header>
 
-    {{-- Tombol Tambah Booking --}}
-    <a href="{{ route('booking.create') }}" class="btn">+ Create Booking</a>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container">
+      <h1>Booking</h1>
 
-    {{-- Pesan sukses --}}
-    @if (session()->has('success'))
-      <div class="success">
-        {{ session('success') }}
-      </div>
-    @endif
+      {{-- Tombol Tambah Booking --}}
+      <a href="{{ route('booking.create') }}" class="btn">+ Create Booking</a>
 
-    {{-- Tabel Data Booking --}}
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Phone Number</th>
-          <th>Email</th>
-          <th>Equipment</th>
-          <th>Booking Date</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($booking as $item)
+      {{-- Pesan sukses --}}
+      @if (session()->has('success'))
+        <div class="success">
+          {{ session('success') }}
+        </div>
+      @endif
+
+      {{-- Tabel Data Booking --}}
+      <table>
+        <thead>
           <tr>
-            <td>{{ $item->id }}</td>
-            <td>{{ $item->phone_number }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->equipment }}</td>
-            <td>{{ $item->booking_date }}</td>
-            <td>
-              <a href="{{ route('booking.edit', $item->id) }}" class="edit-link">Edit</a>
-            </td>
-            <td>
-              <form method="POST" action="{{ route('booking.destroy', $item->id) }}" class="action-form">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="Delete" class="delete-btn" onclick="return confirm('Yakin ingin menghapus?')" />
-              </form>
-            </td>
+            <th>ID</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Equipment</th>
+            <th>Booking Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          @foreach ($booking as $item)
+            <tr>
+              <td>{{ $item->id }}</td>
+              <td>{{ $item->phone_number }}</td>
+              <td>{{ $item->email }}</td>
+              <td>{{ $item->equipment }}</td>
+              <td>{{ $item->booking_date }}</td>
+              <td>
+                <a href="{{ route('booking.edit', $item->id) }}" class="edit-link">Edit</a>
+              </td>
+              <td>
+                <form method="POST" action="{{ route('booking.destroy', $item->id) }}" class="action-form">
+                  @csrf
+                  @method('DELETE')
+                  <input type="submit" value="Delete" class="delete-btn" onclick="return confirm('Yakin ingin menghapus?')" />
+                </form>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </div>
 </body>
 </html>

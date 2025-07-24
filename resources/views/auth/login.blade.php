@@ -29,7 +29,20 @@
 </head>
 <body class="bg-light">
 
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<!-- Navigasi atas -->
+<nav class="d-flex justify-content-between align-items-center px-4 py-3 bg-white shadow-sm">
+  <a href="{{ url('/') }}" class="btn btn-outline-secondary">← Halaman Utama</a>
+  <div>
+    @if (Route::currentRouteName() !== 'login')
+      <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Login</a>
+    @endif
+    @if (Route::currentRouteName() !== 'register')
+      <a href="{{ route('register') }}" class="btn btn-outline-primary">Register</a>
+    @endif
+  </div>
+</nav>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
   <div class="row shadow" style="width: 800px; border-radius: 10px; background-color: white; overflow: hidden;">
     
     <!-- Gambar Olahraga -->
